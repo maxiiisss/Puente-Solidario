@@ -1,0 +1,69 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patrocinio - Puente Solidario</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <h1 class="logo">PUENTE SOLIDARIO<br><span class="subtitle">ARAUCANÍA</span></h1>
+            <div style="margin-top: 1rem;">
+                <a href="{% url 'productos:inicio' %}" class="question-btn" style="text-decoration: none;">Volver al Inicio</a>
+            </div>
+            <p class="slogan">"Invierte en solidaridad"</p>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="container">
+            <section class="objectives-section">
+                <h2>Planes de Patrocinio</h2>
+                <div class="objectives-grid">
+                    <div class="objective-card" style="border-top: 5px solid #cd7f32;">
+                        <h4>Socio Bronce</h4>
+                        <p style="font-size: 1.5rem; font-weight: bold; margin: 1rem 0;">$10.000 / mes</p>
+                        <ul style="list-style: none; padding: 0; text-align: left; margin-bottom: 1.5rem;">
+                            <li>✅ Certificado de donación</li>
+                            <li>✅ Boletín mensual</li>
+                            <li>✅ Agradecimiento en web</li>
+                        </ul>
+                        <button class="question-btn">Elegir Plan</button>
+                    </div>
+
+                    <div class="objective-card" style="border-top: 5px solid #c0c0c0;">
+                        <h4>Socio Plata</h4>
+                        <p style="font-size: 1.5rem; font-weight: bold; margin: 1rem 0;">$25.000 / mes</p>
+                        <ul style="list-style: none; padding: 0; text-align: left; margin-bottom: 1.5rem;">
+                            <li>✅ Todo lo de Bronce</li>
+                            <li>✅ Polo institucional</li>
+                            <li>✅ Invitación a eventos</li>
+                        </ul>
+                        <button class="question-btn active">Elegir Plan</button>
+                    </div>
+
+                    <div class="objective-card" style="border-top: 5px solid #ffd700;">
+                        <h4>Socio Oro</h4>
+                        <p style="font-size: 1.5rem; font-weight: bold; margin: 1rem 0;">$50.000 / mes</p>
+                        <ul style="list-style: none; padding: 0; text-align: left; margin-bottom: 1.5rem;">
+                            <li>✅ Todo lo de Plata</li>
+                            <li>✅ Logo destacado en Home</li>
+                            <li>✅ Visita a proyectos</li>
+                        </ul>
+                        <button class="question-btn">Elegir Plan</button>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Puente Solidario Araucanía. Construyendo comunidad juntos.</p>
+        </div>
+    </footer>
+</body>
+</html>

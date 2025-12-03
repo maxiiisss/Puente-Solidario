@@ -1,0 +1,37 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¡Gracias por tu donación!</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body style="display: flex; align-items: center; justify-content: center; height: 100vh; background-color: #f8f9fa;">
+
+    <div class="container" style="text-align: center; max-width: 600px; padding: 2rem; background: white; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+        
+        <div style="font-size: 4rem; color: #28a745; margin-bottom: 1rem;">
+            ❤️
+        </div>
+
+        <h1 style="color: #2c5aa0; margin-bottom: 1rem;">¡Muchas Gracias!</h1>
+        
+        <p style="font-size: 1.1rem; color: #555; margin-bottom: 2rem;">
+            Tu aporte ha sido recibido exitosamente. Gracias a personas como tú, podemos seguir construyendo puentes de solidaridad en la Araucanía.
+        </p>
+
+        <div style="display: flex; gap: 1rem; justify-content: center;">
+            <a href="{% url 'productos:inicio' %}" class="question-btn active" style="text-decoration: none;">
+                Volver al Inicio
+            </a>
+            
+            <a href="{% url 'productos:hacer_donacion' %}" class="question-btn" style="text-decoration: none; background: white; color: #2c5aa0;">
+                Nueva Donación
+            </a>
+        </div>
+
+    </div>
+
+</body>
+</html>

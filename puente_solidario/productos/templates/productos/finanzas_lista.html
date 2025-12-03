@@ -1,0 +1,129 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Gestión Financiera</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <style>
+        /* Estilos específicos para la tabla de finanzas */
+        .finance-container {
+            max-width: 900px;
+            margin: 2rem auto;
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        .header-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            border-bottom: 2px solid #f0f0f0;
+            padding-bottom: 1rem;
+        }
+        .finance-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+        .finance-table th {
+            text-align: left;
+            padding: 1rem;
+            background-color: #f8f9fa;
+            color: #2c5aa0;
+            font-weight: 600;
+        }
+        .finance-table td {
+            padding: 1rem;
+            border-bottom: 1px solid #eee;
+        }
+        .finance-table tr:hover {
+            background-color: #fcfcfc;
+        }
+        .badge {
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+        /* Clases para colores */
+        .badge-ingreso { background-color: #e8f5e9; color: #2e7d32; }
+        .badge-egreso { background-color: #ffebee; color: #c62828; }
+        .amount-ingreso { color: #2e7d32; font-weight: bold; }
+        .amount-egreso { color: #c62828; font-weight: bold; }
+        
+        /* Botones de acción */
+        .btn-sm {
+            padding: 5px 10px;
+            font-size: 0.8rem;
+            border-radius: 4px;
+            text-decoration: none;
+            margin-left: 5px;
+        }
+        .btn-delete { background-color: #ffebee; color: #c62828; border: 1px solid #ffcdd2; }
+        .btn-delete:hover { background-color: #ffcdd2; }
+    </style>
+</head>
+<body>
+    <header class="header" style="padding: 1rem 0;">
+        <div class="container">
+            <h1 class="logo" style="font-size: 1.5rem;">Panel Financiero</h1>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="finance-container">
+            <div class="header-actions">
+                <h2 style="color: #333; margin: 0; border: none;">Transacciones</h2>
+                <a href="{% url 'productos:nueva_transaccion' %}" class="question-btn active" style="text-decoration: none;">
+                    + Nueva Transacción
+                </a>
+            </div>
+
+            {% if transacciones %}
+                <table class="finance-table">
+                    <thead>
+                        <tr>
+                            <th>Fecha</th>
+                            <th>Tipo</th>
+                            <th>Descripción</th>
+                            <th>Monto</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for t in transacciones %}
+                        <tr>
+                            <td>{{ t.fecha|date:"d M Y" }}</td>
+                            <td>
+                                <span class="badge {% if t.tipo|lower == 'ingreso' %}badge-ingreso{% else %}badge-egreso{% endif %}">
+                                    {{ t.get_tipo_display }}
+                                </span>
+                            </td>
+                            <td>{{ t.descripcion }}</td>
+                            <td class="{% if t.tipo|lower == 'ingreso' %}amount-ingreso{% else %}amount-egreso{% endif %}">
+                                {% if t.tipo|lower == 'egreso' %}-{% endif %}${{ t.monto }}
+                            </td>
+                            <td>
+                                <a href="{% url 'productos:eliminar_transaccion' t.pk %}" class="btn-sm btn-delete">Eliminar</a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            {% else %}
+                <div style="text-align: center; padding: 3rem; color: #666;">
+                    <p>No hay movimientos registrados.</p>
+                    <p style="font-size: 0.9rem;">Comienza agregando una transacción.</p>
+                </div>
+            {% endif %}
+
+            <div style="margin-top: 2rem; text-align: center;">
+                <a href="{% url 'productos:inicio' %}" style="color: #666; text-decoration: none;">← Volver al Inicio</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

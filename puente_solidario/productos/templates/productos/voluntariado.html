@@ -1,0 +1,64 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voluntariado - Puente Solidario</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <h1 class="logo">PUENTE SOLIDARIO<br><span class="subtitle">ARAUCANÍA</span></h1>
+            <div style="margin-top: 1rem;">
+                <a href="{% url 'productos:inicio' %}" class="question-btn" style="text-decoration: none;">Volver al Inicio</a>
+            </div>
+            <p class="slogan">"Manos que ayudan"</p>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="container">
+            <section class="objectives-section">
+                <h2>Únete a nuestro Voluntariado</h2>
+                <p style="text-align: center; margin-bottom: 2rem;">Tu tiempo y dedicación pueden cambiar vidas en la Araucanía.</p>
+                
+                <div class="form-container" style="max-width: 600px; margin: 0 auto; background: #f9f9f9; padding: 2rem; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+                    <form method="post">
+                        {% csrf_token %}
+                        <div style="margin-bottom: 1rem;">
+                            <label style="display: block; margin-bottom: 0.5rem; font-weight: bold;">Nombre Completo</label>
+                            <input type="text" class="form-control" name="nombre" placeholder="Tu nombre" style="width: 100%; padding: 0.5rem;">
+                        </div>
+                        <div style="margin-bottom: 1rem;">
+                            <label style="display: block; margin-bottom: 0.5rem; font-weight: bold;">Correo Electrónico</label>
+                            <input type="email" class="form-control" name="email" placeholder="nombre@ejemplo.com" style="width: 100%; padding: 0.5rem;">
+                        </div>
+                        <div style="margin-bottom: 1rem;">
+                            <label style="display: block; margin-bottom: 0.5rem; font-weight: bold;">Área de Interés</label>
+                            <select class="form-control" name="area" style="width: 100%; padding: 0.5rem;">
+                                <option>Logística y Distribución</option>
+                                <option>Apoyo en Terreno</option>
+                                <option>Difusión y Redes Sociales</option>
+                                <option>Administración</option>
+                            </select>
+                        </div>
+                        <div style="margin-bottom: 1rem;">
+                            <label style="display: block; margin-bottom: 0.5rem; font-weight: bold;">Disponibilidad</label>
+                            <input type="text" class="form-control" name="disponibilidad" placeholder="Ej: Fines de semana, Tardes..." style="width: 100%; padding: 0.5rem;">
+                        </div>
+                        <button type="submit" class="question-btn active" style="width: 100%; margin-top: 1rem;">Enviar Solicitud</button>
+                    </form>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Puente Solidario Araucanía. Construyendo comunidad juntos.</p>
+        </div>
+    </footer>
+</body>
+</html>

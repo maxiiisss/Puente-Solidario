@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Productos</title>
+</head>
+<body>
+    <h1>Lista de Productos</h1>
+    
+    <a href="{% url 'productos:crear_producto' %}">+ Añadir Nuevo Producto</a>
+    <hr>
+
+    {% if productos %}
+        <ul>
+            {% for p in productos %}
+                <li>
+                    <strong>{{ p.nombre }}</strong>
+                    - Precio: ${{ p.precio }}
+                    - Stock: {{ p.stock }}
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No hay productos para mostrar.</p>
+    {% endif %}
+</body>
+</html>

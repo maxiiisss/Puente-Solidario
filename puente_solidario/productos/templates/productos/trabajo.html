@@ -1,0 +1,57 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bolsa de Trabajo - Puente Solidario</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <h1 class="logo">PUENTE SOLIDARIO<br><span class="subtitle">ARAUCANÍA</span></h1>
+            <div style="margin-top: 1rem;">
+                <a href="{% url 'productos:inicio' %}" class="question-btn" style="text-decoration: none;">Volver al Inicio</a>
+            </div>
+            <p class="slogan">"Oportunidades para crecer"</p>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="container">
+            <section class="news-section">
+                <h2>Ofertas Laborales Disponibles</h2>
+                
+                <div class="faq-list" style="margin-top: 2rem;">
+                    <div class="faq-item" style="padding: 1.5rem; border-bottom: 1px solid #eee;">
+                        <h3 style="color: #2c3e50;">Coordinador de Proyectos Sociales</h3>
+                        <p style="color: #666; margin: 0.5rem 0;">Jornada Completa | Temuco</p>
+                        <p>Buscamos un profesional para liderar iniciativas de integración comunitaria.</p>
+                        <button class="question-btn" style="margin-top: 1rem; font-size: 0.9rem;">Postular</button>
+                    </div>
+
+                    <div class="faq-item" style="padding: 1.5rem; border-bottom: 1px solid #eee;">
+                        <h3 style="color: #2c3e50;">Asistente Administrativo</h3>
+                        <p style="color: #666; margin: 0.5rem 0;">Media Jornada | Remoto/Híbrido</p>
+                        <p>Apoyo en la gestión de documentación y contacto con patrocinadores.</p>
+                        <button class="question-btn" style="margin-top: 1rem; font-size: 0.9rem;">Postular</button>
+                    </div>
+                </div>
+
+                <div style="margin-top: 3rem; text-align: center; background: #e8f4f8; padding: 2rem; border-radius: 8px;">
+                    <h3>¿Buscas Talento?</h3>
+                    <p>Si eres una empresa y quieres publicar una oferta con sentido social, contáctanos.</p>
+                    <a href="#" class="question-btn active">Publicar Oferta</a>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Puente Solidario Araucanía. Construyendo comunidad juntos.</p>
+        </div>
+    </footer>
+</body>
+</html>

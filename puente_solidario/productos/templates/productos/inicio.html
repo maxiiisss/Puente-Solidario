@@ -1,0 +1,165 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Puente Solidario Araucanía</title>
+    
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+
+<body>
+    <header class="header">
+        <div class="container">
+            <h1 class="logo">PUENTE SOLIDARIO<br><span class="subtitle">ARAUCANÍA</span></h1>
+            
+            <div style="margin-top: 1rem;">
+                {% if user.is_authenticated %}
+                    <p>Hola, {{ user.username }} | 
+                    <form action="{% url 'logout' %}" method="post" style="display:inline;">
+                        {% csrf_token %}
+                        <button type="submit" class="question-btn" style="font-size: 0.8rem; padding: 0.3rem 0.8rem;">Salir</button>
+                    </form>
+                    </p>
+                {% else %}
+                    <a href="{% url 'login' %}" class="question-btn" style="text-decoration: none;">Iniciar Sesión</a>
+                {% endif %}
+            </div>
+            
+            <p class="slogan">"Esto es dar"</p>
+        </div>
+    </header>
+
+    <nav class="nav-section">
+        <div class="container">
+            <div class="nav-grid">
+                <div class="nav-card" onclick="window.location.href='{% url 'productos:hacer_donacion' %}'" style="cursor: pointer;">
+                    <h3>Donaciones</h3>
+                    <p>Contribuye con recursos</p>
+                </div>
+
+                <div class="nav-card" onclick="window.location.href='{% url 'productos:trabajo' %}'" style="cursor: pointer;">
+                    <h3>Oferta de Trabajo</h3>
+                    <p>Oportunidades laborales</p>
+                </div>
+
+                <div class="nav-card" onclick="window.location.href='{% url 'productos:voluntariado' %}'" style="cursor: pointer;">
+                    <h3>Voluntariado</h3>
+                    <p>Únete como voluntario</p>
+                </div>
+
+                <div class="nav-card" onclick="window.location.href='{% url 'productos:patrocinio' %}'" style="cursor: pointer;">
+                    <h3>Patrocinio</h3>
+                    <p>Apoya nuestros proyectos</p>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="container">
+            <section class="news-section">
+                <div class="news-header">
+                    <h2>Noticias</h2>
+                    <div class="questions">
+                        <button class="question-btn active" data-question="que-eres">¿Qué eres?</button>
+                        <button class="question-btn" data-question="somos">¿Somos?</button>
+                    </div>
+                </div>
+                <div class="news-content">
+                    <div class="question-content active" id="que-eres">
+                        <p>Somos una comunidad comprometida con el bienestar social y la solidaridad entre vecinos.</p>
+                    </div>
+                    <div class="question-content" id="somos">
+                        <p>Juntos formamos una red de apoyo que trasciende barreras y construye puentes de esperanza.</p>
+                    </div>
+                </div>
+                <div class="frequent-questions">
+                    <h3>Preguntas Frecuentes</h3>
+                    <div class="faq-list">
+                        <div class="faq-item">
+                            <button class="faq-question">¿Cómo puedo participar?</button>
+                            <div class="faq-answer">Puedes registrarte en cualquiera de nuestras secciones y comenzar a ayudar de inmediato.</div>
+                        </div>
+                        <div class="faq-item">
+                            <button class="faq-question">¿Es seguro donar?</button>
+                            <div class="faq-answer">Sí, utilizamos sistemas seguros y transparentes para todas las donaciones.</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="objectives-section">
+                <h2>Objetivos</h2>
+                <div class="objectives-grid">
+                    <div class="objective-card">
+                        <h4>Conectar</h4>
+                        <p>Unir a la comunidad a través de la solidaridad</p>
+                    </div>
+                    <div class="objective-card">
+                        <h4>Apoyar</h4>
+                        <p>Brindar ayuda a quienes más lo necesitan</p>
+                    </div>
+                    <div class="objective-card">
+                        <h4>Crecer</h4>
+                        <p>Expandir nuestra red de solidaridad</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="recommendations-section">
+                <h2>Recomendaciones para Ayuda</h2>
+                <div class="recommendations-content">
+                    <div class="recommendation-item">
+                        <h4>Para Donantes</h4>
+                        <p>Verifica siempre la autenticidad de las solicitudes antes de realizar donaciones.</p>
+                    </div>
+                    <div class="recommendation-item">
+                        <h4>Para Beneficiarios</h4>
+                        <p>Proporciona información clara y verificable sobre tu situación.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="financial-section">
+                <h2>Estado Financiero</h2>
+                <div class="financial-stats">
+                    <div class="stat-card">
+                        <span class="stat-symbol">$$$</span>
+                        <h3>Recaudado</h3>
+                        <p class="stat-number">${{ total_recaudado|default:"0"|floatformat:0 }}</p>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-symbol">$$$</span>
+                        <h3>Distribuido</h3>
+                        <p class="stat-number">${{ total_distribuido|default:"0"|floatformat:0 }}</p>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-symbol">$$$</span>
+                        <h3>Disponible</h3>
+                        <p class="stat-number">${{ total_disponible|default:"0"|floatformat:0 }}</p>
+                    </div>
+                </div>
+
+                {% if user.is_staff %}
+                <div style="text-align: center; margin-top: 20px;">
+                    <a href="{% url 'productos:lista_transacciones' %}" class="question-btn active" style="text-decoration: none;">Gestionar Finanzas</a>
+                </div>
+                {% endif %}
+            </section>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Puente Solidario Araucanía. Construyendo comunidad juntos.</p>
+        </div>
+    </footer>
+
+    <script src="{% static 'js/script.js' %}"></script>
+</body>
+
+</html>

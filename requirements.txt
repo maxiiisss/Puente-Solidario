@@ -1,0 +1,8 @@
+asgiref>=3.7.0
+Django>=5.0
+sqlparse>=0.4.0
+tzdata>=2023.3
+# Para PostgreSQL en Windows (evita errores de compilación)
+psycopg2-binary>=2.9.9
+# Para manejo de imágenes (ImageField)
+Pillow>=10.0.0

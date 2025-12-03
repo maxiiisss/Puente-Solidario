@@ -1,0 +1,46 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Registrar Movimiento</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body style="background-color: #f0f2f5;">
+    <div style="background: #333; color: white; padding: 1rem; text-align: center;">
+        <h3>Panel de Administración Financiera</h3>
+    </div>
+
+    <div class="container" style="max-width: 600px; margin-top: 3rem;">
+        <div style="background: white; padding: 2rem; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+            <h2 style="color: #333; border-bottom: 2px solid #eee; padding-bottom: 10px; margin-bottom: 20px;">
+                Registrar Transacción
+            </h2>
+            
+            <form method="post">
+                {% csrf_token %}
+                
+                <div style="margin-bottom: 1rem;">
+                    <label style="display:block; font-weight:bold;">Tipo de Operación:</label>
+                    {{ form.tipo }}
+                </div>
+
+                <div style="margin-bottom: 1rem;">
+                    <label style="display:block; font-weight:bold;">Monto ($):</label>
+                    {{ form.monto }}
+                </div>
+
+                <div style="margin-bottom: 1rem;">
+                    <label style="display:block; font-weight:bold;">Descripción / Motivo:</label>
+                    {{ form.descripcion }}
+                </div>
+
+                <div style="display: flex; gap: 10px; margin-top: 2rem;">
+                    <button type="submit" class="question-btn active" style="flex: 1;">Guardar Registro</button>
+                    <a href="{% url 'productos:lista_transacciones' %}" class="question-btn" style="flex: 1; text-align: center; text-decoration: none; background: #ccc; color: #333;">Cancelar</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
