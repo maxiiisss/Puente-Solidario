@@ -21,7 +21,7 @@ class TransaccionForm(forms.ModelForm):
 class DonacionForm(forms.ModelForm):
     class Meta:
         model = Transaccion
-        fields = ['monto', 'descripcion'] # El usuario NO ve el tipo (siempre es Ingreso)
+        fields = ['monto', 'descripcion'] 
         widgets = {
             'monto': forms.NumberInput(attrs={'class': 'form-control', 'placeholder': '¿Cuánto quieres aportar?'}),
             'descripcion': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Tu nombre o mensaje de apoyo'}),
